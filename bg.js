@@ -2,7 +2,7 @@
   let run = (a, b) => {
     let { url } = b || a;
     chrome.windows.create({
-      url: url[0] != "c" ? url : "chrome://newtab",
+      url: b || url[0] != "c" ? url : "chrome://newtab",
       incognito: !0
     }).catch(() => 0);
   }
@@ -12,6 +12,7 @@
 chrome.runtime.onInstalled.addListener(() =>
   chrome.contextMenus.create({
     id: "",
-    title: "Open incognito window"
+    title: "Open incognito window",
+    documentUrlPatterns: ["https://*/*", "http://*/*", "file://*"]
   })
 );
