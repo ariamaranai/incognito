@@ -1,6 +1,6 @@
 {
   let run = (a, b) => {
-    let url = (b || a).url;
+    let { url } = b || a;
     chrome.windows.create({
       url: b || url[0] != "c" ? url : "chrome://newtab",
       incognito: !0
